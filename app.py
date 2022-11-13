@@ -14,17 +14,17 @@ from sklearn.ensemble import RandomForestClassifier
 
 # Create the heading
 st.write("""
-#Explore the different ML model and datasets Let's see which is best
+# Explore the different ML model and datasets Let's see which is best
 """)
 # Dataset name
-datasets_name = st.sidebar.selectbox(
+dataset_name = st.sidebar.selectbox(
     "select Dataset",
     ("Iris","Breast Cancer","Wine")
 )
 
 #Classifier name
 classifier_name = st.sidebar.selectbox(
-    "select lassifier",
+    "select classifier",
     ("KNN","SVM","Random Forest")
 )
 
@@ -41,7 +41,7 @@ def get_dataset(dataset_name):
     y = data.target
     return x,y
 #Now we will call the function and put the variable equal to the x,y
-x,y = get_dataset(datasets_name)
+x,y = get_dataset(dataset_name)
 # Find the data shape and print its value
 st.write("shape of dataset:",x.shape)
 st.write("number of classes",len(np.unique(y)))
@@ -49,10 +49,10 @@ st.write("number of classes",len(np.unique(y)))
 def add_parameter_ui(classifier_name):
     params=dict()
     if classifier_name=="SVM":
-        C=st.sidebar.slider("C,0.01,10.0")
+        C=st.sidebar.slider("C", 0.01,10.0)
         params["C"]=C
     elif classifier_name=="KNN":
-        K=st.sidebar.slider("K,1,15")
+        K=st.sidebar.slider("K",1,15)
         params["K"]=K
     else:
         max_depth=st.sidebar.slider("max_depth",2,15)
